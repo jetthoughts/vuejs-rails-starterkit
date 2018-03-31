@@ -2,7 +2,7 @@
   "name": "vuejs-ror-setup",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.2.0",
+    "@rails/webpacker": "^3.4.1",
     "babel-loader": "^7.1.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "vue": "^2.5.13",
@@ -11,7 +11,7 @@
     "webpack": "3.2.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.11.0"
+    "webpack-dev-server": "2.11.2"
   },
   "peerDependencies": {
     "extract-text-webpack-plugin": "^3.0.2"
