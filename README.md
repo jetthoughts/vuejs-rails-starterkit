@@ -1,27 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
-* Ruby version: 2.4.3
+* Ruby version: 2.5.1
 
-* System dependencies: Node.js, Postgresql
-
-* Configuration:
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* System dependencies: Node.js, Yarn
 
 ## Generate Rub on Rails Project with Vue.js and Turbolinks
 
@@ -61,8 +44,9 @@ bin/rails s
 
 5. Verify locally that vue.js working
 
-open "http://localhost:3000/landing/index"
-Expect to see https://cl.ly/3X43283o1f3b/Image%202018-01-22%20at%2010.04.46.public.png
+`open "http://localhost:3000/landing/index"`
+
+Expect to see ![](https://cl.ly/3X43283o1f3b/Image%202018-01-22%20at%2010.04.46.public.png)
 
 ## Setup Heroku and Deploy
 
@@ -77,6 +61,7 @@ bin/rails assets:precompile
 ```
 
 2. Create Heroku App and provision it
+
 ```bash
 heroku create
 
@@ -92,3 +77,138 @@ heroku config:set RAILS_ENV=production NODE_ENV=production
 git push heroku master
 heroku apps:open
 ```
+
+## Setup Vue.js code conventions
+
+1. Install vue.js official babel preset
+
+```bash
+yarn add --dev babel-preset-vue-app
+```
+
+2. Update `.babelrc` with:
+
+```diff
+ {
+   "presets": [
++    "vue-app",
+     ["env", {
+       "modules": false,
+```
+
+## Install Jest for Component Unit Tests
+
+1. Add Jest
+
+```bash
+yarn add --dev jest vue-jest babel-jest @vue/test-utils jest-serializer-vue
+```
+
+2. Update `package.json`
+
+```diff
+ {
+   "name": "vuejs-ror-setup",
+   "private": true,
++  "scripts": {
++    "test": "jest"
++  },
++  "jest": {
++    "roots": [
++      "test/javascript"
++    ],
++    "moduleDirectories": [
++      "node_modules",
++      "app/javascript"
++    ],
++    "moduleNameMapper": {
++      "^@/(.*)$": "app/javascript/$1"
++    },
++    "moduleFileExtensions": [
++      "js",
++      "json",
++      "vue"
++    ],
++    "transform": {
++      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
++      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
++    },
++    "snapshotSerializers": [
++      "<rootDir>/node_modules/jest-serializer-vue"
++    ]
++  },
+   "dependencies": {
+     "@rails/webpacker": "^3.4.1",
+```
+
+2. Update `.babelrc`:
+
+```diff
+   "presets": [
+     "vue-app",
+     ["env", {
+       "modules": false,
+       "targets": {
+         "browsers": "> 1%",
+         "uglify": true
+       },
+       "useBuiltIns": true
+     }]
+   ],   
++  "env": {
++    "test": {
++      "presets": [
++        ["env", {
++          "targets": {
++            "node": "current"
++          }
++      }]]
++  }},
+   "plugins": [
+     "syntax-dynamic-import",
+     "transform-object-rest-spread",
+```
+
+2. Add `test/javascript/test.test.js`:
+
+```js
+test('there is no I in team', () => {
+  expect('team').not.toMatch(/I/);
+});
+```
+
+3. Verify installation
+
+```bash
+yarn test
+```
+
+You should found ![](https://cl.ly/3y0d2E110c3H/Image%202018-03-31%20at%2019.18.54.public.png)
+
+4. Add component test for App in `test/javascript/app.test.js`:
+
+```js
+import { mount, shallow } from '@vue/test-utils'
+import App from 'app';
+
+describe('App', () => {
+  test('is a Vue instance', () => {
+    const wrapper = mount(App)
+    expect(wrapper.isVueInstance()).toBeTruthy()
+  })
+
+  test('matches snapshot', () => {
+    const wrapper = shallow(App)
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+});
+```
+
+5. Verify by
+
+```bash
+yarn test
+```
+
+You should see all tests passed
+
