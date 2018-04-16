@@ -9,7 +9,7 @@ Things you may want to cover:
 ## Generate Rub on Rails Project with Vue.js and Turbolinks
 
 ```bash
-rails new vuejs-ror-setup -M -C -S --skip-turbolinks --edge --webpack=vue -d postgresql
+rails new vuejs-ror-setup -M -C -S --skip-turbolinks --webpack=vue -d postgresql
 bundle update
 yarn upgrade @rails/webpacker --latest
 yarn upgrade webpack-dev-server --latest
