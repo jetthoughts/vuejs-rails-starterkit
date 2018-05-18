@@ -1,3 +1,9 @@
+if Rails.env.development?
+  policy.script_src :self, :https, :unsafe_eval
+else
+  policy.script_src :self, :https
+end
+
 # Be sure to restart your server when you modify this file.
 
 # Define an application-wide content security policy
