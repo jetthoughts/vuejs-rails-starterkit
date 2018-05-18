@@ -1,4 +1,4 @@
-import { mount, shallow } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import App from 'app';
 
 describe('App', () => {
@@ -8,7 +8,7 @@ describe('App', () => {
   })
 
   test('matches snapshot', () => {
-    const wrapper = shallow(App)
+    const wrapper = shallowMount(App)
     expect(wrapper.html()).toMatchSnapshot()
   })
-})
+});

@@ -16,8 +16,23 @@ yarn upgrade webpack-dev-server --latest
 yarn install
 bin/rails test
 ```
+2. Enable `unsafe-eval rule` for development environment
 
-2. Enable Webpacker by updating `app/views/layout/application.html.erb`:
+This can be done in the `config/initializers/content_security_policy.rb` with the following
+configuration:
+
+```ruby
+  Rails.application.config.content_security_policy do |policy|
+    if Rails.env.development?
+      policy.script_src :self, :https, :unsafe_eval
+    else
+      policy.script_src :self, :https
+    end
+  end
+```
+You can read more about this in the [Vue docs](https://vuejs.org/v2/guide/installation.html#CSP-environments).
+
+3. Enable Webpacker by updating `app/views/layout/application.html.erb`:
 
 ```diff
 -    <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -26,13 +41,13 @@ bin/rails test
 +    <%= javascript_pack_tag 'hello_vue' %>
 ```
 
-3. Add sample page to confirm that Vue.js loaded:
+4. Add sample page to confirm that Vue.js loaded:
 
 ```bash
 bin/rails g controller Landing index --no-javascripts --no-stylesheets --no-helper --no-assets --no-fixture
 bin/rails s
 ```
-4. Setup sample page as home page by updating `config/routes.rb`:
+5. Setup sample page as home page by updating `config/routes.rb`:
 
 ```diff
  Rails.application.routes.draw do
@@ -42,7 +57,7 @@ bin/rails s
  end
 ``` 
 
-5. Verify locally that vue.js working
+6. Verify locally that vue.js working
 
 `open "http://localhost:3000/landing/index"`
 
@@ -71,29 +86,11 @@ heroku buildpacks:add heroku/ruby -i 2
 heroku config:set RAILS_ENV=production NODE_ENV=production
 ```
 
-5. Verify that vue.js working on Heroku
+3. Verify that vue.js working on Heroku
 
 ```bash
 git push heroku master
 heroku apps:open
-```
-
-## Setup Vue.js code conventions
-
-1. Install vue.js official babel preset
-
-```bash
-yarn add --dev babel-preset-vue-app
-```
-
-2. Update `.babelrc` with:
-
-```diff
- {
-   "presets": [
-+    "vue-app",
-     ["env", {
-       "modules": false,
 ```
 
 ## Install Jest for Component Unit Tests
@@ -188,7 +185,7 @@ You should found ![](https://cl.ly/3y0d2E110c3H/Image%202018-03-31%20at%2019.18.
 4. Add component test for App in `test/javascript/app.test.js`:
 
 ```js
-import { mount, shallow } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import App from 'app';
 
 describe('App', () => {
@@ -198,7 +195,7 @@ describe('App', () => {
   })
 
   test('matches snapshot', () => {
-    const wrapper = shallow(App)
+    const wrapper = shallowMount(App)
     expect(wrapper.html()).toMatchSnapshot()
   })
 });
