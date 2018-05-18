@@ -29,24 +29,17 @@
     ]
   },
   "dependencies": {
-    "@rails/webpacker": "^3.4.1",
-    "babel-loader": "^7.1.2",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "vue": "^2.5.13",
-    "vue-loader": "^13.7.0",
-    "vue-template-compiler": "^2.5.13",
-    "webpack": "3.2.0"
+    "@rails/webpacker": "3.5",
+    "vue": "^2.5.16",
+    "vue-loader": "14.2.2",
+    "vue-template-compiler": "^2.5.16"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.13",
-    "babel-jest": "^22.4.3",
-    "babel-preset-vue-app": "^2.0.0",
-    "jest": "^22.4.3",
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "babel-jest": "^22.4.4",
+    "jest": "^22.4.4",
     "jest-serializer-vue": "^1.0.0",
-    "vue-jest": "^2.3.0",
-    "webpack-dev-server": "2.11.2"
-  },
-  "peerDependencies": {
-    "extract-text-webpack-plugin": "^3.0.2"
+    "vue-jest": "^2.6.0",
+    "webpack-dev-server": "3.1.4"
   }
 }
