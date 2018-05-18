@@ -203,7 +203,7 @@ You should found ![](https://cl.ly/3y0d2E110c3H/Image%202018-03-31%20at%2019.18.
 4. Add component test for App in `test/javascript/app.test.js`:
 
 ```js
-import { mount, shallow } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import App from 'app';
 
 describe('App', () => {
@@ -213,7 +213,7 @@ describe('App', () => {
   })
 
   test('matches snapshot', () => {
-    const wrapper = shallow(App)
+    const wrapper = shallowMount(App)
     expect(wrapper.html()).toMatchSnapshot()
   })
 });
