@@ -44,16 +44,18 @@ You can read more about this in the [Vue docs](https://vuejs.org/v2/guide/instal
 4. Delete deprecated option from `app/config/webpack/loaders/vue.js`:
 
 ```diff
+    const inDevServer = process.argv.find(v => v.includes('webpack-dev-server'))
 -   const extractCSS = !(inDevServer && (devServer && devServer.hmr)) || isProduction
 
  module.exports = {
    test: /\.vue(\.erb)?$/,
    use: [{
-  -   loader: 'vue-loader',
-  -   options: { extractCSS }
-  +   loader: 'vue-loader'
+-    loader: 'vue-loader',
+-    options: { extractCSS }
++    loader: 'vue-loader'
    }]
-}
+ }
+```
 
 5. Add sample page to confirm that Vue.js loaded:
 
