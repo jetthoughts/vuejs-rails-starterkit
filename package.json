@@ -38,7 +38,6 @@
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-jest": "^22.4.4",
-    "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^22.4.4",
     "jest-serializer-vue": "^1.0.0",
     "vue-jest": "^2.6.0",

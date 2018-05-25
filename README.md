@@ -41,13 +41,27 @@ You can read more about this in the [Vue docs](https://vuejs.org/v2/guide/instal
 +    <%= javascript_pack_tag 'hello_vue' %>
 ```
 
-4. Add sample page to confirm that Vue.js loaded:
+4. Delete deprecated option from `app/config/webpack/loaders/vue.js`:
+
+```diff
+-   const extractCSS = !(inDevServer && (devServer && devServer.hmr)) || isProduction
+
+ module.exports = {
+   test: /\.vue(\.erb)?$/,
+   use: [{
+  -   loader: 'vue-loader',
+  -   options: { extractCSS }
+  +   loader: 'vue-loader'
+   }]
+}
+
+5. Add sample page to confirm that Vue.js loaded:
 
 ```bash
 bin/rails g controller Landing index --no-javascripts --no-stylesheets --no-helper --no-assets --no-fixture
 bin/rails s
 ```
-5. Setup sample page as home page by updating `config/routes.rb`:
+6. Setup sample page as home page by updating `config/routes.rb`:
 
 ```diff
  Rails.application.routes.draw do
@@ -57,7 +71,7 @@ bin/rails s
  end
 ``` 
 
-6. Verify locally that vue.js working
+7. Verify locally that vue.js working
 
 `open "http://localhost:3000/landing/index"`
 
