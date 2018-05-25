@@ -98,7 +98,7 @@ heroku apps:open
 1. Install vue.js official babel preset
 
 ```bash
-yarn add --dev babel-preset-vue-app
+yarn add babel-preset-vue-app
 ```
 
 2. Update `.babelrc` with:
