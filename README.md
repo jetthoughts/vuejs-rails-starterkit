@@ -4,7 +4,7 @@ Things you may want to cover:
 
 * Ruby version: 2.5.1
 
-* System dependencies: Node.js, Yarn
+* System dependencies: Node.js, Yarn, PostgreSQL
 
 ## Generate Rub on Rails Project with Vue.js and Turbolinks
 
@@ -16,7 +16,7 @@ yarn upgrade webpack-dev-server --latest
 yarn install
 bin/rails test
 ```
-2. Enable `unsafe-eval rule` for development environment
+2. Enable `unsafe-eval rule` to support runtime-only build
 
 This can be done in the `config/initializers/content_security_policy.rb` with the following
 configuration:
