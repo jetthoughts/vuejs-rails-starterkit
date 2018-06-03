@@ -6,7 +6,7 @@ Things you may want to cover:
 
 * System dependencies: Node.js, Yarn, PostgreSQL
 
-## Generate Rub on Rails Project with Vue.js and Turbolinks
+## Generate Ruby on Rails Project with Vue.js and Turbolinks
 
 ```bash
 rails new vuejs-ror-setup -M -C -S --skip-turbolinks --webpack=vue -d postgresql
