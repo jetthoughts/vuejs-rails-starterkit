@@ -2,12 +2,12 @@
   "name": "vuejs-ror-setup",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "~4.0.0-pre.2",
     "vue": "^2.5.16",
-    "vue-loader": "14.2.2",
+    "vue-loader": "^15.2.4",
     "vue-template-compiler": "^2.5.16"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "^3.1.4"
   }
 }
