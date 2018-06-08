@@ -101,7 +101,7 @@ bin/rails s
 
 `open "http://localhost:3000/"`
 
-Expect to see ![](https://cl.ly/3X43283o1f3b/Image%202018-01-22%20at%2010.04.46.public.png)
+Expect to see ![](https://user-images.githubusercontent.com/125715/41176720-28eb3268-6b6a-11e8-9cb8-29cd78155d1b.png)
 
 ## Setup Heroku and Deploy
 
