@@ -117,6 +117,8 @@ bin/rails assets:precompile
 
 2. Create Heroku App and provision it
 
+Requirements: [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+
 ```bash
 heroku create
 
