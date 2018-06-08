@@ -6,7 +6,7 @@ Things you may want to cover:
 
 * System dependencies: [Node.js](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/en/), [PostgreSQL](https://www.postgresql.org/), [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-* Key Dependencies: [Ruby on Rails](https://rubyonrails.org/) version 5.2, [Vue.js](https://vuejs.org) version 2.5, [Webpacker](https://github.com/rails/webpacker) version 4
+* Key Dependencies: [Ruby on Rails](https://rubyonrails.org/) version 5.2, [Vue.js](https://vuejs.org) version 2.5, [Webpacker](https://github.com/rails/webpacker) for Webpack version 4
 
 ## Generate Ruby on Rails Project with Vue.js and Turbolinks
 
