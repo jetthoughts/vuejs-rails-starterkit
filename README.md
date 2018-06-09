@@ -8,7 +8,7 @@ Things you may want to cover:
 
 * Key Dependencies: [Ruby on Rails](https://rubyonrails.org/) version 5.2, [Vue.js](https://vuejs.org) version 2.5, [Webpacker](https://github.com/rails/webpacker) for Webpack version 4
 
-## Generate Ruby on Rails Project with Vue.js and Turbolinks
+## Generate Ruby on Rails Project with Vue.js (No Turbolinks included on this stage)
 
 ```bash
 gem install rails -v 5.2
