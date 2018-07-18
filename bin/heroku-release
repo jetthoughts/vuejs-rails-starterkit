@@ -3,6 +3,7 @@
 echo "== Preparing database =="
 bin/rails db:migrate
 
+# Reset database for testing purpose on staging
 if [ "$DB_SEED_ON_REDEPLOY" = "true" ]; then
   echo "Seeding ..."
   bin/rails db:seed

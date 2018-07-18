@@ -1,15 +1,22 @@
 {
   "name": "vuejs-rails-5-starterkit",
-  "scripts": {
-  },
   "env": {
     "RAILS_ENV": "production",
     "RACK_ENV": "prouction",
     "NODE_ENV": "production",
+    "DB_SEED_ON_REDEPLOY": "true",
     "RAILS_MAX_THREADS": "5",
-    "WEB_CONCURRENCY": "2"
-  },
-  "formation": {
+    "WEB_CONCURRENCY": "2",
+    "BUNDLE_WITHOUT": "production:development:test",
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    }
   },
   "addons": [
     "heroku-postgresql:hobby-dev",
