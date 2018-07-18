@@ -3,14 +3,17 @@
   "scripts": {
   },
   "env": {
-    "RAILS_ENV": "staging",
-    "RACK_ENV": "staging",
-    "NODE_ENV": "production"
+    "RAILS_ENV": "production",
+    "RACK_ENV": "prouction",
+    "NODE_ENV": "production",
+    "RAILS_MAX_THREADS": "5",
+    "WEB_CONCURRENCY": "2"
   },
   "formation": {
   },
   "addons": [
-
+    "heroku-postgresql:hobby-dev",
+    "memcachier:dev"
   ],
   "buildpacks": [
     {
