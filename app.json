@@ -1,0 +1,20 @@
+{
+  "name": "vuejs-rails-5-starterkit",
+  "scripts": {
+  },
+  "env": {
+    "RAILS_ENV": "staging",
+    "RACK_ENV": "staging",
+    "NODE_ENV": "production"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
