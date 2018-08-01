@@ -40,7 +40,7 @@ bundle exec rails webpacker:install:vue
 3. Upgraded packages by Yarn too
 
 ```bash
-yarn add @rails/webpacker@~4.0.0-pre.2 
+yarn add @rails/webpacker@~4.0.0-pre.2
 yarn upgrade webpack-dev-server --latest
 yarn install
 ```
@@ -95,7 +95,7 @@ bin/rails s
    get 'hello/index'   
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  end
-``` 
+```
 
 7. Verify locally that vue.js working
 
@@ -106,7 +106,7 @@ Expect to see ![](https://user-images.githubusercontent.com/125715/41176720-28eb
 ## Setup Heroku and Deploy
 
 1. Confirm compilation is working:
-  
+
 ```bash
 RAILS_ENV=production \
 NODE_ENV=production \
@@ -173,6 +173,8 @@ yarn add --dev jest vue-jest babel-jest @vue/test-utils jest-serializer-vue
 +    "test": "jest"
 +  },
 +  "jest": {
++    "verbose": true,
++    "testURL": "http://localhost/",
 +    "roots": [
 +      "test/javascript"
 +    ],
@@ -270,4 +272,3 @@ yarn test
 ```
 
 You should see all tests passed
-
