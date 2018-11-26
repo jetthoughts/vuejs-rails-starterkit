@@ -12,15 +12,15 @@
     ],
     "moduleDirectories": [
       "node_modules",
-    "app/javascript"
+      "app/javascript"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "app/javascript/$1"
     },
     "moduleFileExtensions": [
       "js",
-    "json",
-    "vue"
+      "json",
+      "vue"
     ],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
@@ -33,9 +33,11 @@
   "dependencies": {
     "@rails/webpacker": "^4.0.0-pre.3",
     "@vue/babel-preset-app": "^3.1.1",
+    "turbolinks": "^5.2.0",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "vue-turbolinks": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

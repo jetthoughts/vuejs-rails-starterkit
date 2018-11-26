@@ -8,3 +8,5 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'serviceworker-companion';
+
+import 'initializers/turbolinks.js'
