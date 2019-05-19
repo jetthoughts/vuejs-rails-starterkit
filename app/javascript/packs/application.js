@@ -17,5 +17,7 @@
 
 console.log('Hello World from Webpacker')
 
+import 'serviceworker-companion'
+
 import 'initializers/polyfills'
 
