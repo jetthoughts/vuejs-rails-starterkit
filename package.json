@@ -11,6 +11,12 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^7.0.0-bridge",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "jest-serializer-vue": "^2.0.2",
+    "vue-jest": "^3.0.5",
     "webpack-dev-server": "^3.9.0"
   }
 }
