@@ -64,6 +64,8 @@ jobs:
       - ruby/install-deps:
           bundler-version: '`cat Gemfile.lock | tail -1 | tr -d " "`'
           key: v1-dependencies
+      - node/install:
+          node-version: latest
       - node/install-packages:
           app-dir: .
           pkg-manager: yarn
