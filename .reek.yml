@@ -1,0 +1,27 @@
+---
+detectors:
+  IrresponsibleModule:
+    enabled: false
+  UncommunicativeVariableName:
+    accept:
+      - e
+  UnusedPrivateMethod:
+    enabled: false
+  DuplicateMethodCall:
+    max_calls: 4
+
+directories:
+  "**/app/controllers/**":
+    InstanceVariableAssumption:
+      enabled: false
+    UtilityFunction:
+      enabled: false
+  "**/app/jobs/**":
+    UtilityFunction:
+      enabled: false
+  "**/app/helpers/**":
+    UtilityFunction:
+      enabled: false
+  "**/spec/**":
+    UtilityFunction:
+      enabled: false

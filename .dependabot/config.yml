@@ -1,0 +1,32 @@
+---
+version: 1
+update_configs:
+  # Keep package.json (& lockfiles) up to date as soon as
+  # new versions are published to the npm registry
+  - package_manager: javascript
+    directory: /
+    update_schedule: weekly
+    allowed_updates:
+      - match:
+          dependency_type: development
+          update_type: all
+      - match:
+          dependency_type: production
+          update_type: security
+    version_requirement_updates: 'off'
+  - package_manager: ruby:bundler
+    directory: /
+    update_schedule: weekly
+    allowed_updates:
+      - match:
+          dependency_type: all
+          update_type: all
+    automerged_updates:
+      - match:
+          dependency_name: puma
+          update_type: semver:minor
+      - match:
+          dependency_name: rspec*
+      - match:
+          dependency_name: capybara*
+    version_requirement_updates: 'off'
