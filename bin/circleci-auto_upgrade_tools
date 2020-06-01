@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "-----Create and switch to new branch-----"
+
+current_date=$(date +"%Y%m%d%H%M")
+new_branch_name="auto-upgrade-tools-dependencies-${current_date}"
+git checkout -b $new_branch_name
+
+echo "-----Run Gemfile.tools update-----"
+
+if bin/tools-upgrade; then
+  echo 'Updated successfully'
+
+  git config user.name "jt-tools-deployments"
+  git config user.email "circleci.bot@example.com"
+
+  git commit -am "Upgrades Gemfile.tools dependencies"
+  git push "https://$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git" -f
+
+  curl -X POST                                                                                                  \
+    -H "Authorization: token ${GITHUB_TOKEN}"                                                                   \
+    -d '{"title":"Upgrades tools dependencies","base":"master","head":"'$CIRCLE_PROJECT_USERNAME':'$new_branch_name'"}' \
+    https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/pulls
+  exit 0
+else
+  echo 'Failed to update\n'
+  exit 1
+fi

@@ -1,0 +1,143 @@
+---
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+
+Layout/DotPosition:
+  Enabled: true
+  EnforcedStyle: leading
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+  EnforcedLastArgumentHashStyle: always_inspect
+
+Layout/LineLength:
+  Max: 113
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: symmetrical
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Metrics/AbcSize:
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/ClassLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/MethodLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/ModuleLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Style/StabbyLambdaParentheses:
+  EnforcedStyle: require_no_parentheses
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  Exclude:
+    - 'db/schema.rb'
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# Rails
+
+Rails:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Blacklist: []
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - staging
+    - test
