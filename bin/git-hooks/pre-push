@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+bin/lint-pr
+
+# bin/rspec --tag critical
+# bin/rails test
