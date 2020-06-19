@@ -66,6 +66,8 @@ As an additional review of how to setup PWA, Turbolinks, CSS frameworks, Storybo
 * [PostgreSQL](https://www.postgresql.org/) 12
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
+[![asciicast](https://asciinema.org/a/ArqvGrc6JK6pKzlRTMV3Jotwr.svg)](https://asciinema.org/a/ArqvGrc6JK6pKzlRTMV3Jotwr)
+
 ## Generate Ruby on Rails Project with Vue.js (No Turbolinks included on this stage)
 
 ```bash
@@ -161,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
      environment.splitChunks()
      ```
 
-   * Enable Webpacker by updating `app/views/layout/application.html.erb`:
+   * Enable Webpacker by updating `app/views/layouts/application.html.erb`:
 
      Change:
 
@@ -369,7 +371,6 @@ environment.config.set('output.globalObject', 'this')
 
 ```bash
 yarn add vue-turbolinks turbolinks
-yarn install
 ```
 
 2. Load Turbolinks by adding to
@@ -448,7 +449,7 @@ import 'admin-lte/build/js/AdminLTE'
 import 'initializers/adminlte'
 ```
 
-5. Next step is updating main layout. Code for layout you can find [here](https://adminlte.io/themes/v3/starter.html).
+5. Next step is updating main layout `app/views/layouts/application.html.erb`. Code for layout you can find [here](https://adminlte.io/themes/v3/starter.html).
 Also don't forget to add `yield` in div with `content` class:
 
 ```html
