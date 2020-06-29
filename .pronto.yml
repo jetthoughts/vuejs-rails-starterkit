@@ -1,0 +1,26 @@
+---
+all:
+  exclude:
+    - .*
+    - .**/*
+    - bin/**/*
+    - config/**/*
+    - db/migrate/**/*
+    - db/schema.rb
+    - docs/**/*
+    - node_modules/**/*
+    - public/**/*
+    - vendor/**/*
+
+eslint:
+  exclude:
+    - vendor/assets/**/*
+    - vendor/packs/**/*
+
+flay:
+  exclude:
+    - test/**/*
+
+max_warnings: 10
+verbose: true
+warnings_per_review: 5
