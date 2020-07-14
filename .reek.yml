@@ -1,0 +1,22 @@
+---
+detectors:
+  IrresponsibleModule:
+    enabled: false
+  DuplicateMethodCall:
+    max_calls: 4
+  FeatureEnvy:
+    enabled: false
+  UncommunicativeVariableName:
+    accept:
+      - e
+      - i
+      - v
+  UnusedPrivateMethod:
+    enabled: false
+  UtilityFunction:
+    enabled: false
+
+directories:
+  "**/app/controllers/**":
+    InstanceVariableAssumption:
+      enabled: false

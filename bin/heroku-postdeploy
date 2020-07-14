@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "== Preparing database =="
+bin/rails db:prepare
