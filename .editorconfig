@@ -1,0 +1,70 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+max_line_length = 113
+tab_width = 2
+trim_trailing_whitespace = true
+
+[*.css]
+ij_continuation_indent_size = 2
+ij_css_align_closing_brace_with_properties = false
+ij_css_blank_lines_around_nested_selector = 1
+ij_css_blank_lines_between_blocks = 1
+ij_css_keep_blank_lines_in_code = 2
+ij_css_properties_order = font,font-family,font-size,font-weight,font-style,font-variant,font-size-adjust,font-stretch,line-height,position,z-index,top,right,bottom,left,display,visibility,float,clear,overflow,overflow-x,overflow-y,clip,zoom,align-content,align-items,align-self,flex,flex-flow,flex-basis,flex-direction,flex-grow,flex-shrink,flex-wrap,justify-content,order,box-sizing,width,min-width,max-width,height,min-height,max-height,margin,margin-top,margin-right,margin-bottom,margin-left,padding,padding-top,padding-right,padding-bottom,padding-left,table-layout,empty-cells,caption-side,border-spacing,border-collapse,list-style,list-style-position,list-style-type,list-style-image,content,quotes,counter-reset,counter-increment,resize,cursor,user-select,nav-index,nav-up,nav-right,nav-down,nav-left,transition,transition-delay,transition-timing-function,transition-duration,transition-property,transform,transform-origin,animation,animation-name,animation-duration,animation-play-state,animation-timing-function,animation-delay,animation-iteration-count,animation-direction,text-align,text-align-last,vertical-align,white-space,text-decoration,text-emphasis,text-emphasis-color,text-emphasis-style,text-emphasis-position,text-indent,text-justify,letter-spacing,word-spacing,text-outline,text-transform,text-wrap,text-overflow,text-overflow-ellipsis,text-overflow-mode,word-wrap,word-break,tab-size,hyphens,pointer-events,opacity,color,border,border-width,border-style,border-color,border-top,border-top-width,border-top-style,border-top-color,border-right,border-right-width,border-right-style,border-right-color,border-bottom,border-bottom-width,border-bottom-style,border-bottom-color,border-left,border-left-width,border-left-style,border-left-color,border-radius,border-top-left-radius,border-top-right-radius,border-bottom-right-radius,border-bottom-left-radius,border-image,border-image-source,border-image-slice,border-image-width,border-image-outset,border-image-repeat,outline,outline-width,outline-style,outline-color,outline-offset,background,background-color,background-image,background-repeat,background-attachment,background-position,background-position-x,background-position-y,background-clip,background-origin,background-size,box-decoration-break,box-shadow,text-shadow
+
+[*.haml]
+tab_width = 2
+ij_haml_keep_indents_on_empty_lines = false
+
+[*.properties]
+
+[*.scss]
+ij_continuation_indent_size = 2
+ij_scss_align_closing_brace_with_properties = false
+ij_scss_blank_lines_around_nested_selector = 1
+ij_scss_blank_lines_between_blocks = 1
+
+[.editorconfig]
+
+[{*.js,*.cjs}]
+ij_continuation_indent_size = 2
+
+[{*.sht,*.html,*.shtm,*.shtml,*.htm}]
+ij_continuation_indent_size = 2
+
+[{*.xslt,*.rng,*.ant,*.xsl,*.xsd,*.xul,*.jhm,*.xml,*.tld,*.fxml,*.wsdl,*.jrxml,*.jnlp}]
+tab_width = 2
+
+[{*.yml,*.yaml}]
+tab_width = 2
+
+[{.babelrc,.stylelintrc,.eslintrc,jest.config,.resultset.json.lock,bowerrc,*.json,*.jsb3,*.jsb2}]
+tab_width = 2
+
+[{Podfile,Brewfile,cucumber,yarn,spork,Gemfile.tools,rake,.simplecov,rcov,rails,spec,capfile,gemfile,rakefile,guardfile,isolate,vagrantfile,*.gemspec,*.jbuilder,*.thor,*.rbw,*.ru,*.rb,*.rake}]
+ij_ruby_align_group_field_declarations = false
+ij_ruby_align_multiline_parameters = false
+ij_ruby_blank_lines_around_method = 1
+ij_ruby_chain_calls_alignment = 0
+ij_ruby_convert_brace_block_by_enter = true
+ij_ruby_force_newlines_around_visibility_mods = true
+ij_ruby_indent_private_methods = false
+ij_ruby_indent_protected_methods = false
+ij_ruby_indent_public_methods = false
+ij_ruby_indent_when_cases = false
+ij_ruby_keep_blank_lines_in_declarations = 2
+ij_ruby_keep_line_breaks = true
+ij_ruby_parentheses_around_method_arguments = true
+ij_ruby_spaces_around_assignment_operators = true
+ij_ruby_spaces_around_hashrocket = true
+ij_ruby_spaces_around_other_operators = true
+ij_ruby_spaces_around_range_operators = false
+ij_ruby_spaces_around_relational_operators = true
+ij_ruby_spaces_within_array_initializer_braces = true
+ij_ruby_spaces_within_braces = true
