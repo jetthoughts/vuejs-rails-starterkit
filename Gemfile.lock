@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/jetthoughts/jt_tools.git
-  revision: 24ef9167efacea2a4ded61f0435de57d4c6e6678
+  revision: ca409e2766f5a99896a9d7ef54d7cabf3403dfa1
   specs:
-    jt_tools (0.0.9)
+    jt_tools (0.0.11)
       railties (>= 4.2)
 
 GIT
