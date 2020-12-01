@@ -1,0 +1,104 @@
+---
+require:
+  - standard
+  - rubocop-rails
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+
+Bundler/InsecureProtocolSource:
+  Enabled: true
+  Include:
+    - '**/*.gemfile'
+    - '**/Gemfile'
+    - '**/Gemfile.tools'
+    - '**/gems.rb'
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 113
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Metrics/AbcSize:
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/ClassLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/MethodLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/ModuleLength:
+  CountComments: false
+  Exclude:
+    - 'test/**/*.rb'
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+# Rails
+
+Rails:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - staging
+    - test
