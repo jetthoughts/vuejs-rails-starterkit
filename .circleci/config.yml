@@ -1,0 +1,206 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+---
+
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.1
+  node: circleci/node@4.0.0
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - production
+                - staging
+
+  auto_upgrade_tools:
+    triggers:
+      - schedule:
+          cron: "0 10 1 * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - upgrade_tools
+
+jobs:
+  test:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.7-node-browsers
+        environment:
+          BUNDLE_GEMFILE: Gemfile
+          BUNDLE_PATH: vendor/bundle
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
+          BUNDLE_WITHOUT: "production:staging:development"
+          COVERAGE: true
+          DATABASE_URL: postgresql://ubuntu@localhost/db
+          NODE_ENV: test
+          RACK_ENV: test
+          RAILS_ENV: test
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/postgres:alpine-ram
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: db
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore Bundler Cache between Branches
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
+      - ruby/install-deps:
+          bundler-version: '`cat Gemfile.lock | tail -1 | tr -d " "`'
+          key: v1-dependencies
+          with-cache: false
+          path: './vendor/bundle'
+
+      - save_cache:
+          name: Save Bundler Cache between Branches
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - node/install-packages:
+          app-dir: .
+          pkg-manager: yarn
+          cache-version: v1
+
+      - restore_cache:
+          keys:
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ .Environment.CIRCLE_SHA1 }}
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}-
+            - asset-cache-v1-{{ arch }}-master-
+
+      - run:
+          name: Precompile Assets
+          command: |
+            bin/webpack
+            bin/rails assets:precompile
+
+      - save_cache:
+          key: asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - public/assets
+            - public/pack-test
+            - tmp/cache/assets
+            - tmp/cache/webpacker
+
+      - restore_cache:
+          name: Restore Jest Cache
+          keys:
+            - jest-cache-v1-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+            - jest-cache-v1-{{ arch }}-{{ .Branch }}-
+            - jest-cache-v1-
+
+      - run:
+          name: JavaScript Unit Tests
+          command: |
+            bin/yarn test --ci --no-watchman \
+              --coverage --coverageDirectory coverage/jest \
+              --coverageReporters text-summary --coverageReporters html \
+              --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: tmp/reports/jest-results
+
+      - save_cache:
+          name: Save Jest Cache
+          key: jest-cache-v1-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - tmp/cache/jest
+
+      - run: bin/rails db:schema:load
+      # rails test
+      - run: bin/rails test "test/**/*_test.rb"
+
+      # collect reports
+      - store_test_results:
+          path: ./tmp/reports/
+      - store_artifacts:
+          path: ./coverage
+  lint:
+    docker:
+      - image: cimg/ruby:2.7-node
+        environment:
+          DISABLE_SPRING: 1
+          BUNDLE_GEMFILE: Gemfile.tools
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-tools-dependencies-{{ checksum "Gemfile.tools.lock" }}-{{ checksum "yarn.lock" }}
+            - v1-tools-dependencies-
+
+      - run:
+          name: Install cmake for building pronto dependencies
+          command: sudo apt-get update -qq
+            && sudo apt-get install -yq --no-install-recommends
+            cmake yamllint python3-setuptools python3-pkg-resources pkg-config
+
+      - run:
+          name: Install Bundle Dependencies
+          command: bin/bundle check --path vendor/bundle-tools || bin/bundle install --path vendor/bundle-tools
+
+      - run:
+          name: Install Node Packages
+          command: bin/yarn check || bin/yarn install
+
+      - save_cache:
+          key: v1-tools-dependencies-{{ checksum "Gemfile.tools.lock" }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./vendor/bundle-tools
+            - ./node_modules
+
+      - run: bin/lint-pr
+
+  upgrade_tools:
+    docker:
+      - image: cimg/ruby:2.7-node
+        environment:
+          DISABLE_SPRING: 1
+          BUNDLE_GEMFILE: Gemfile.tools
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.tools.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler:$BUNDLER_VERSION
+
+      - run:
+          name: Install System Dependencies
+          command: sudo apt-get update
+            && sudo apt-get install cmake yamllint python3-setuptools python3-pkg-resources pkg-config
+
+      - run:
+          name: Run Gemfile tools update in separate branch
+          command: ./bin/circleci-auto_upgrade_tools
