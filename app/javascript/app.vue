@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img alt="Logo" src="../assets/images/logo.png" width="350">
     <p>{{ message }}</p>
   </div>
 </template>
@@ -15,6 +16,10 @@ export default {
 </script>
 
 <style scoped>
+img {
+  display: block;
+  margin: 15px   auto;
+}
 p {
   font-size: 2em;
   text-align: center;
