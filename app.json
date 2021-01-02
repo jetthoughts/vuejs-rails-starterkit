@@ -1,0 +1,52 @@
+{
+  "scripts": {
+    "postdeploy": "bin/heroku-postdeploy"
+  },
+  "env": {
+    "BUNDLE_WITHOUT": "development:test:production",
+    "DISABLE_DATABASE_ENVIRONMENT_CHECK": "1",
+    "JEMALLOC_ENABLED": "true",
+    "LANG": "en_US.UTF-8",
+    "MALLOC_ARENA_MAX": "2",
+    "NODE_ENV": "production",
+    "RACK_ENV": "staging",
+    "RAILS_ENV": "staging",
+    "RAILS_LOG_TO_STDOUT": "enabled",
+    "RAILS_MASTER_KEY": {
+      "required": true
+    },
+    "RAILS_MAX_THREADS": "5",
+    "RAILS_SERVE_STATIC_FILES": "enabled",
+    "REDIS_PROVIDER": "REDISTOGO_URL",
+    "ROLLBAR_ACCESS_TOKEN": {
+      "required": true
+    },
+    "ROLLBAR_ENDPOINT": {
+      "required": true
+    },
+    "ROLLBAR_ENV": "staging",
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "SIDEKIQ_CONCURRENCY": "5",
+    "WEB_CONCURRENCY": "2"
+  },
+  "addons": [
+    "memcachier:dev",
+    "logentries:le_tryit",
+    "heroku-postgresql:hobby-dev",
+    "redistogo:nano"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "stack": "heroku-20"
+}

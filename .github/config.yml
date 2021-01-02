@@ -1,0 +1,21 @@
+---
+version: 2
+updates:
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "10:00"
+    open-pull-requests-limit: 3
+    versioning-strategy: lockfile-only
+    allow:
+      - dependency-type: all
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "10:00"
+    open-pull-requests-limit: 3
+    versioning-strategy: lockfile-only
+    allow:
+      - dependency-type: all
