@@ -9,7 +9,7 @@ on:
 
 env:
   CI: true
-  CIRCLECI: true
+#  CIRCLECI: true
   RAILS_ENV: test
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile.tools
       COVERAGE: true
       DISABLE_SPRING: 1
-      PRONTO_GITHUB_ACCESS_TOKEN: <token>
+#      PRONTO_GITHUB_ACCESS_TOKEN: <token>
     steps:
       - run: |-
           sudo apt-get update -qq && \
