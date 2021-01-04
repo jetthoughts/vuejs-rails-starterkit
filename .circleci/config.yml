@@ -13,13 +13,24 @@ orbs:
 
 workflows:
   version: 2
-  test:
+  commit:
     jobs:
-      - test
+      - test:
+          requires:
+            - lint
       - lint:
           filters:
             branches:
               ignore:
+                - master
+                - production
+                - staging
+  merge:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
                 - master
                 - production
                 - staging
