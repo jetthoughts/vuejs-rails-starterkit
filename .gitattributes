@@ -1,0 +1,18 @@
+# See https://git-scm.com/docs/gitattributes for more about git attribute files.
+
+# Mark the database schema as having been generated.
+db/schema.rb linguist-generated
+
+# Mark the yarn lockfile as having been generated.
+yarn.lock linguist-generated
+
+# Mark any vendored files as having been vendored.
+vendor/* linguist-vendored
+*.gemspec diff=ruby
+*.rake    diff=ruby
+*.rb      diff=ruby
+*.js      diff=javascript
+
+db/schema.rb merge=ours diff=ruby
+yarn.lock merge=ours
+Gemfile.lock merge=ours linguist-generated

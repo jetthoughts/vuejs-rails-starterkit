@@ -1,0 +1,2 @@
+---
+eslint_executable: "node_modules/.bin/eslint"
