@@ -6,7 +6,7 @@ reporters_opt=""
 
 if [[ -n "$PRONTO_GITHUB_ACCESS_TOKEN" && "$CIRCLECI" == "true" ]]
 then
-  git fetch origin master
+  git fetch origin master --depth 1
   reporters_opt="-f github_status github_pr_review"
 fi
 

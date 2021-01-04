@@ -102,14 +102,12 @@ jobs:
       - run:
           name: Precompile Assets
           command: |
-            bin/webpack
             bin/rails assets:precompile
 
       - save_cache:
           key: asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - public/assets
-            - public/pack-test
+            - public/packs-test
             - tmp/cache/assets
             - tmp/cache/webpacker
 
@@ -145,6 +143,8 @@ jobs:
           path: ./tmp/reports/
       - store_artifacts:
           path: ./coverage
+      - store_artifacts:
+          path: ./tmp/screenshots
   lint:
     docker:
       - image: cimg/ruby:3.0-node
