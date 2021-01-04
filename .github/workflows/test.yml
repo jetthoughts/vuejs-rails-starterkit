@@ -27,6 +27,8 @@ jobs:
             cmake yamllint python3-setuptools python3-pkg-resources pkg-config
 
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -53,8 +55,8 @@ jobs:
             ${{ runner.os }}-modules-
 
       - run: bin/yarn check || bin/yarn install
-      - run: bin/lint-pr
 
+      - run: bin/lint-pr
   test:
     runs-on: ubuntu-latest
     env:
