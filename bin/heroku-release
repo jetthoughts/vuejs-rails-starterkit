@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "== Update Database =="
+bin/rake db:prepare
