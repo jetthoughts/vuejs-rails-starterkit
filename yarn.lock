@@ -9984,9 +9984,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 sweetalert2@^10.10.2:
-  version "10.12.7"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.12.7.tgz#1a8bfa018a87233bb1325faee5099cb48bd14cf4"
-  integrity sha512-nzT2WtZSxu8ZAeqYlfIri+Wuf3OWH+g4rR0rcoFgApACoHTrW+0iqLUXtZ7OdpDERIKvJi1EKNAbvKSN34Hbcg==
+  version "10.13.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.13.0.tgz#fd3c25ae511c36608d205aa020214508641ebd45"
+  integrity sha512-kF6Pnr7s7GDqVYRqqgyfxvG5vlUqfP+j+JF7oZ7DOs0/35jg6sTu8hyi6oD6Rb3fIKWIf1S9mCU7wR8iKa7dAA==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
