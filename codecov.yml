@@ -1,0 +1,9 @@
+---
+codecov:
+  notify:
+    require_ci_to_pass: true
+
+comment:
+  layout: 'diff, flags, files'
+  behavior: 'once'
+  require_changes: false

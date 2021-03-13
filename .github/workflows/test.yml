@@ -1,0 +1,147 @@
+---
+name: Test
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+
+env:
+  CI: true
+  RAILS_ENV: test
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: Gemfile.tools
+      COVERAGE: true
+      DISABLE_SPRING: 1
+    steps:
+      - run: |-
+          sudo apt-get update -qq && \
+          sudo apt-get install -yq --no-install-recommends \
+            cmake yamllint python3-setuptools python3-pkg-resources pkg-config
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
+
+      - run: bin/yarn check || bin/yarn install
+
+      - run: git fetch origin master --depth 1
+      - run: bin/lint-pr
+  test:
+    needs: [lint]
+    runs-on: ubuntu-latest
+    env:
+      COVERAGE: true
+      DATABASE_URL: postgresql://postgres_user:postgres@localhost:5432/postgres_db
+
+    services:
+      postgres:
+        image: circleci/postgres:alpine-ram
+        env:
+          POSTGRES_DB: postgres_db
+          POSTGRES_USER: postgres_user
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Install PostgreSQL 11 client
+        run: |
+          sudo apt-get -yqq install libpq-dev
+
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+
+      - name: Setup DB
+        run: bundle exec rake db:test:prepare
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
+
+      - run: bin/yarn check || bin/yarn install
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            public/assets
+            public/packs-test
+            tmp/cache/assets
+            tmp/cache/webpacker
+          key: "${{ runner.os }}-assets-${{ hashFiles('**/yarn.lock') }}\
+            -${{ hashFiles('**/app/assets') }}-${{ hashFiles('**/app/javascript') }}"
+
+          restore-keys: |
+            ${{ runner.os }}-assets-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/app/assets') }}
+            ${{ runner.os }}-assets-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-assets-
+
+      - name: Precompile assets
+        run: bundle exec rake assets:precompile
+
+      - name: Run tests
+        run: bin/rails test "test/**/*_test.rb"
+
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+
+      - name: Upload Capybara Screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: capybara-screenshots
+          path: tmp/screenshots
