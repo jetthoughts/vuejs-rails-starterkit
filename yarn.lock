@@ -4725,9 +4725,9 @@ flatten@^1.0.2:
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
 flot@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/flot/-/flot-4.2.1.tgz#a44ea240decee51cbd75d97ca69ec12e59365d27"
-  integrity sha512-tnZ4Pg1upBSfSs52VVRPZqF8FUxeVVI124srTV/XNcwJR5ygjaCZuwnpkAuZAWFLZMg2OCHb53pB6VoVB7YT4g==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/flot/-/flot-4.2.2.tgz#0661d9e3805c86ccd36560f9602a0d1484d60fe8"
+  integrity sha512-Strct/A27o0TA25X7Z0pxKhwK4djiP1Kjeqj0tkiqrkRu1qYPqfbp5BYuxEL8CWDNtj85Uc0PnG2E2plo1+VMg==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
