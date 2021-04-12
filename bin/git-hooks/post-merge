@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Run updates on new changes
+branch_name=$(git branch | grep "*" | sed "s/\* //")
+reflog_message=$(git reflog -1)
+merged_branch_name=$(echo $reflog_message | cut -d" " -f 4 | sed "s/://")
+
+# if the merge was caused by a "git pull", we can safely ignore it
+if [[ $reflog_message =~ "merge" ]]; then
+  echo "We support only pull"
+    exit 0
+fi
+
+if [[ $branch_name == "master" ]]; then
+  bin/spring stop; pkill "spring";
+  rm -rf tmp/cache
+
+  bin/setup
+
+  bin/rake db:reset
+
+  echo "Removing merged branches..."
+  git branch --merged master | grep -v "\*" | grep -v master | xargs -n 1 git branch -d
+fi
