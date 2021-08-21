@@ -50,7 +50,7 @@ jobs:
   test:
     docker:
       # specify the version you desire here
-      - image: cimg/ruby:3.0-browsers
+      - image: cimg/ruby:3.0.0-browsers
         environment:
           BUNDLE_GEMFILE: Gemfile
           BUNDLE_PATH: vendor/bundle
@@ -158,7 +158,7 @@ jobs:
           path: ./tmp/screenshots
   lint:
     docker:
-      - image: cimg/ruby:3.0-node
+      - image: cimg/ruby:3.0.0-node
         environment:
           DISABLE_SPRING: 1
           BUNDLE_GEMFILE: Gemfile.tools
@@ -198,7 +198,7 @@ jobs:
 
   upgrade_tools:
     docker:
-      - image: cimg/ruby:3.0-node
+      - image: cimg/ruby:3.0.0-node
         environment:
           DISABLE_SPRING: 1
           BUNDLE_GEMFILE: Gemfile.tools
